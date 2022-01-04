@@ -33,3 +33,11 @@ heroku open                     # Open the default app in browser
 heroku logs --tail              # Recent logs, Heroku stores 1500 lines
 heroku run bash                 # Connect to dyno
 ```
+
+## Dependencies
+
+- Heroku
+  - `pip install heroku`
+- FastAPI and Unicorn server
+  - `pip install "fastapi[all]"`
+  - OR `pip install fastapi; pip install "unicorn[standard]"`
