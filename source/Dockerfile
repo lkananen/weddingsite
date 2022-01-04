@@ -1,17 +1,16 @@
-FROM python:3.9.9-slim-buster
-LABEL maintainer="lkananen"
+FROM python:3.9-alpine
+LABEL maintainer="github.com/lkananen"
 
+# Dependecies
 RUN apt-get update && apt-get install -y python3-dev build-essential
-
 COPY requirements.txt .
-RUN pip3 install -r requirements.txt
+RUN pip3 install --no-cache-dir --upgrade -r requirements.txt
 
-COPY . .
-
-EXPOSE $PORT
+COPY ./app /app
+COPY ./entry.sh /entry.sh
+RUN chmod +x /start.sh
 
 #RUN useradd -m heroku
 #USER heroku
 
-#CMD ["uvicorn", "--host", "0.0.0.0", "--port", $PORT, "main:app"]
-ENTRYPOINT ["uvicorn --host=0.0.0.0 --port=$PORT main:app"]
+CMD ["./entry.sh"]
