@@ -37,6 +37,18 @@ heroku logs --tail              # Recent logs, Heroku stores 1500 lines
 heroku run bash                 # Connect to dyno
 ```
 
+Secrets
+
+GitHub Action uses secrets to push changes to Heroku. Following secrets are required to be added to repository's secrets in the repository settings:
+1. HEROKU_API_KEY
+   - Can be found in:   
+     `Heroku -> Profile -> Account settings -> API key`
+2. HEROKU_APP_NAME
+   - Name of the Heroku application.
+   - Must be unique.
+3. HEROKU_EMAIL
+   - Email that you use with Heroku.
+
 ## Dependencies
 
 - Heroku

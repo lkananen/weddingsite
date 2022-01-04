@@ -1,18 +1,16 @@
-name: GitHub CI
+name: CI
 
 # Triggers
 on:
   push:
       branches:
         - main
-
-  # Allows workflow runs manually from the Actions tab
+  # Allows workflow runs manually from the Actions tab    
   workflow_dispatch:
-      
 
 jobs:
-  Python-Build-Actions:
-    name: Checks Python build success
+  build:
+    name: Checks dependencies build success
     runs-on: ubuntu-latest
     steps:
       - name: Code checkout
@@ -26,3 +24,16 @@ jobs:
         timeout-minutes: 2
         run: pip install -r requirements.txt
       - run: echo "Job status '${{ job.status }}'."
+  release:
+    name: Heroku deployment
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v2
+      - name: Heroku push
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
