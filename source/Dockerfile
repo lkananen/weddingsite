@@ -8,10 +8,10 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
-EXPOSE 5000
+EXPOSE $PORT
 
 #RUN useradd -m heroku
 #USER heroku
 
-CMD ["uvicorn", "--host", "0.0.0.0", "--port", "5000", "main:app"]
-#ENTRYPOINT ["uvicorn --host=0.0.0.0 --port=5000 source.main:app"]
+#CMD ["uvicorn", "--host", "0.0.0.0", "--port", $PORT, "main:app"]
+ENTRYPOINT ["uvicorn --host=0.0.0.0 --port=$PORT main:app"]
