@@ -11,7 +11,7 @@ COPY ./app /app
 COPY ./entry.sh /entry.sh
 RUN chmod +x /entry.sh
 
-#RUN useradd -m heroku
-#USER heroku
+RUN useradd -m heroku
+USER heroku
 
 CMD ["./entry.sh"]
