@@ -1,23 +1,32 @@
 # weddingsite
 
-[![Build status](https://github.com/lkananen/weddingsite/actions/workflows/github-actions.yml/badge.svg?branch=main)](https://github.com/lkananen/weddingsite/actions/workflows/github-actions.yml)
+Docker containered FastAPI server running on Heroku.
+
+Build status:   
+[![CI](https://github.com/lkananen/weddingsite/actions/workflows/github-actions.yml/badge.svg?branch=main)](https://github.com/lkananen/weddingsite/actions/workflows/github-actions.yml)
+
+Direct link to the site:   
+[link](https://laurijatiia.herokuapp.com/)
 
 
 ## Setup
 
-Local setup
+### Local deployment
+Running following commands sets up local server.  
+_**DEPRICATED**_: [Procfile](https://github.com/lkananen/weddingsite/blob/4d97fccaaa61857f787953b9688a0a4111512ed0/Procfile) removed.
 
 ```
 git clone https://github.com/lkananen/weddingsite.git
 
-pip install -r requirements.txt
+pip install -r source/requirements.txt
 
 heroku login
 heroku local -f Procfile            # Starts the server
 heroku open
 ```
 
-Manual deployment
+### First time deployment
+Heroku application creation required on the first time. Following commands create _example-app-name_ Heroku application. After creation GitHub Actions can be attached to the application in the Heroku portal for [automated deployments](https://devcenter.heroku.com/articles/github-integration).
 
 ```
 git clone https://github.com/lkananen/weddingsite.git
@@ -26,18 +35,25 @@ git clone https://github.com/lkananen/weddingsite.git
 heroku login
 heroku apps:create example-app-name --region eu
 
-# Heroku requirements
-heroku buildpacks:set heroku/python
+# Heroku build requirements
+heroku buildpacks:set heroku/python --app example-app-name
 
-# Heroku needs to know that app is in a Docker container 
+# Heroku needs to know that app is in a Docker container
 heroku stack:set container --app example-app-name
 
 # Manual Heroku deployment
 git push heroku main
-heroku ps:scale web=1
+heroku ps:scale web=1           # sets dynos
 ```
 
-Secrets
+### Automatic deployment
+Based on [GitHub Actions](./.github/workflows/github-actions.yml) and [Heroku deployment configuration](heroku.yml) files. Commit triggers dependency check and deployment to Heroku. See secrets on the required setup on Heroku secrets.   
+Also optionally, Heroku can be configured to connect to GitHub to allow manual and automatic deployments based on the commits. Heroku deployment pipeline does not support build checks or other actions on the [free tier](https://www.heroku.com/pricing).
+
+
+### Secrets
+
+**Note!** *Required by GitHub Actions.*   
 
 GitHub Action uses secrets to push changes to Heroku. Following secrets are required to be added to repository's secrets in the repository settings:
 1. HEROKU_API_KEY
@@ -50,7 +66,7 @@ GitHub Action uses secrets to push changes to Heroku. Following secrets are requ
    - Email that you use with Heroku.
 
 ## Dependencies
-
+Local install is based on the following installations:
 - Heroku
   - `pip install heroku`
 - FastAPI and Uvicorn server
@@ -58,16 +74,20 @@ GitHub Action uses secrets to push changes to Heroku. Following secrets are requ
   - OR `pip install fastapi; pip install "uvicorn[standard]"`
 
 
-# Additional details
+## Additional details
+Relevant details for further development, debugging and interaction with the application.
 
-## Always on application
+
+### Always on application
 Heroku application goes to sleep after 30 minutes of inactivity. For example, Kaffeine application can be used to pings the app so that it stays active:  
 http://kaffeine.herokuapp.com/
 
 Deactivation link to Kaffeine:  
 http://kaffeine.herokuapp.com/#decaf
 
-## Heroku debug commands
+
+### Heroku debug commands
+Useful command for Heroku debugging:
 ```
 heroku open                     # Open the default app in browser
 heroku logs --tail              # Recent logs, Heroku stores 1500 lines
