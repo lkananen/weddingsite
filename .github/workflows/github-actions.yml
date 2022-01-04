@@ -11,20 +11,6 @@ on:
       
 
 jobs:
-  Code-Actions:
-    name: Checkout code
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Event '${{ github.event_name }}' on branch '${{ github.ref }}' started this action."
-      - name: Code checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0          # Fetches all changes
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "Job status '${{ job.status }}'."
-
   Python-Build-Actions:
     name: Checks Python build success
     runs-on: ubuntu-latest
