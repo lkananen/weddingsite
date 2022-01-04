@@ -22,21 +22,17 @@ git clone https://github.com/lkananen/weddingsite.git
 
 # Heroku setup
 heroku login
-heroku apps:create example-app --region eu
+heroku apps:create example-app-name --region eu
 
 # Heroku requirements
 heroku buildpacks:set heroku/python
 
+# Heroku needs to know that app is in a Docker container 
+heroku stack:set container --app example-app-name
+
 # Manual Heroku deployment
 git push heroku main
 heroku ps:scale web=1
-
-# Heroku debug commands
-heroku open                     # Open the default app in browser
-heroku logs --tail              # Recent logs, Heroku stores 1500 lines
-heroku run bash                 # Connect to dyno
-heroku ps:exec                  # SSH to dyno
-heroku ps                       # Info on dyno
 ```
 
 Secrets
@@ -68,3 +64,12 @@ http://kaffeine.herokuapp.com/
 
 Deactivation link to Kaffeine:  
 http://kaffeine.herokuapp.com/#decaf
+
+## Heroku debug commands
+```
+heroku open                     # Open the default app in browser
+heroku logs --tail              # Recent logs, Heroku stores 1500 lines
+heroku run bash                 # Connect to dyno
+heroku ps:exec                  # SSH to dyno
+heroku ps                       # Info on dyno
+```
