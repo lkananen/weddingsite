@@ -26,6 +26,7 @@ jobs:
       - run: echo "Job status '${{ job.status }}'."
   release:
     name: Heroku deployment
+    # TODO: enable on prod
     #needs: build               # Disabled: faster builds & less waiting time
     runs-on: ubuntu-latest
     steps:
@@ -37,7 +38,9 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
-          healthcheck: "https://${{secrets.HEROKU_APP_NAME}}.herokuapp.com/health"
-          checkstring: "ok"
-          delay: 10
-          rollbackonhealthcheckfailed: false
+          # Disabled: faster builds ignore health
+          # TODO: Enable on prod
+          #healthcheck: "https://${{secrets.HEROKU_APP_NAME}}.herokuapp.com/health"
+          #checkstring: "ok"
+          #delay: 30
+          #rollbackonhealthcheckfailed: false
