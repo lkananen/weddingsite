@@ -1,1 +1,1 @@
-web: uvicorn source/main:app --reload
+web: uvicorn main:app --reload --app-dir ./source --workers 1
