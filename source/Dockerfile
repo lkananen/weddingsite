@@ -3,7 +3,7 @@ LABEL maintainer="github.com/lkananen"
 
 # Dependecies
 COPY requirements.txt .
-RUN pip3 install --no-cache-dir --upgrade -r requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 COPY ./app /app
 COPY ./entry.sh /entry.sh
