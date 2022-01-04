@@ -2,7 +2,6 @@ FROM python:3.9-alpine
 LABEL maintainer="github.com/lkananen"
 
 # Dependecies
-RUN apt-get update && apt-get install -y python3-dev build-essential
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir --upgrade -r requirements.txt
 
