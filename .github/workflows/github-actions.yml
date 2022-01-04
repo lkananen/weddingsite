@@ -30,7 +30,7 @@ jobs:
           install: true
       - name: Builds Docker image
         run: |
-          docker build ./source/Dockerfile  # will run buildx
+          docker build source/Dockerfile  # will run buildx
       - run: echo "Job status '${{ job.status }}'."
   release:
     name: Heroku deployment
