@@ -3,8 +3,18 @@
 
 ## Setup
 
+Local setup
+
 ```
-# Git commands
+git clone https://github.com/lkananen/weddingsite.git
+pip install -r requirements.txt
+heroku login
+heroku local web
+```
+
+Manual deployment
+
+```
 git clone https://github.com/lkananen/weddingsite.git
 
 # Heroku setup
