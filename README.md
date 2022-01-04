@@ -1,5 +1,7 @@
 # weddingsite
 
+[![Build status](https://github.com/lkananen/weddingsite/actions/workflows/github-actions.yml/badge.svg?branch=main)](https://github.com/lkananen/weddingsite/actions/workflows/github-actions.yml)
+
 
 ## Setup
 

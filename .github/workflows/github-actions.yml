@@ -55,4 +55,4 @@ jobs:
           #healthcheck: "https://${{secrets.HEROKU_APP_NAME}}.herokuapp.com/health"
           #checkstring: "ok"
           #delay: 30
-          #rollbackonhealthcheckfailed: false
+          #rollbackonhealthcheckfailed: true
