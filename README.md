@@ -7,9 +7,12 @@ Local setup
 
 ```
 git clone https://github.com/lkananen/weddingsite.git
+
 pip install -r requirements.txt
+
 heroku login
-heroku local web
+heroku local -f Procfile web
+heroku open
 ```
 
 Manual deployment

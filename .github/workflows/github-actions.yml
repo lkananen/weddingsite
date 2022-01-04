@@ -1,0 +1,42 @@
+name: GitHub CI
+
+# Triggers
+on:
+  push:
+      branches:
+        - main
+
+  # Allows workflow runs manually from the Actions tab
+  workflow_dispatch:
+      
+
+jobs:
+  Code-Actions:
+    name: Checkout code
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Event '${{ github.event_name }}' on branch '${{ github.ref }}' started this action."
+      - name: Code checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0          # Fetches all changes
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "Job status '${{ job.status }}'."
+
+  Python-Build-Actions:
+    name: Checks Python build success
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v2
+      - name: Python setup
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+      - name: Pip env build
+        timeout-minutes: 2
+        run: pip install -r requirements.
+      - run: echo "Job status '${{ job.status }}'."
