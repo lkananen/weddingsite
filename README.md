@@ -11,7 +11,7 @@ git clone https://github.com/lkananen/weddingsite.git
 pip install -r requirements.txt
 
 heroku login
-heroku local -f Procfile web
+heroku local -f Procfile            # Starts the server
 heroku open
 ```
 
