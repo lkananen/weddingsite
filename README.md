@@ -41,6 +41,6 @@ heroku run bash                 # Connect to dyno
 
 - Heroku
   - `pip install heroku`
-- FastAPI and Unicorn server
+- FastAPI and Uvicorn server
   - `pip install "fastapi[all]"`
-  - OR `pip install fastapi; pip install "unicorn[standard]"`
+  - OR `pip install fastapi; pip install "uvicorn[standard]"`
