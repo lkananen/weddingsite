@@ -9,7 +9,7 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 COPY ./app /app
 COPY ./entry.sh /entry.sh
-RUN chmod +x /start.sh
+RUN chmod +x /entry.sh
 
 #RUN useradd -m heroku
 #USER heroku
