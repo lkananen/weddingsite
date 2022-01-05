@@ -51,6 +51,8 @@ heroku ps:scale web=1           # sets dynos
 Based on [GitHub Actions](./.github/workflows/github-actions.yml) and [Heroku deployment configuration](heroku.yml) files. Commit triggers dependency check and deployment to Heroku. See secrets on the required setup on Heroku secrets.   
 Also optionally, Heroku can be configured to connect to GitHub to allow manual and automatic deployments based on the commits. Heroku deployment pipeline does not support build checks or other actions on the [free tier](https://www.heroku.com/pricing).
 
+![Deployment pipeline](/source/docs/FastAPI_Heroku.png)
+Deployment pipeline architecture.
 
 ### Secrets
 
