@@ -18,13 +18,12 @@ Build status:
     - [Automatic deployment](#automatic-deployment)
       - [Secrets](#secrets)
   - [Dependencies](#dependencies)
-  - [Additional details](#additional-details)
-    - [Always on application](#always-on-application)
-    - [Heroku debug commands](#heroku-debug-commands)
+- [Additional details](#additional-details)
+  - [Always on application](#always-on-application)
+  - [Heroku debug commands](#heroku-debug-commands)
 
 
 ## Directory structure
-
 - `/.github/workflows` Deployment pipeline used by GitHub Actions.
 - `/docs` Documentation files.
 - `/source` Source files and environment configurations for the web server.
@@ -72,6 +71,7 @@ heroku open
 
 ### First time deployment
 Heroku application creation is required on the first time.    
+**Note!** *Automated pipeline requires app creation and stack definition.*
 
 Following commands create _example-app-name_ Heroku application. After creation GitHub Actions can be attached to the application in the Heroku portal for [automated deployments](https://devcenter.heroku.com/articles/github-integration).
 
@@ -95,6 +95,8 @@ heroku ps:scale web=1           # sets dynos
 
 
 ### Automatic deployment
+**Note!** *Automated pipeline requires stack definition and app creation from first time deployment AND defining the secrets.*
+
 Based on [GitHub Actions](./.github/workflows/github-actions.yml) and [Heroku deployment configuration](heroku.yml) files. Commit triggers dependency check and deployment to Heroku. See secrets on the required setup on Heroku secrets.   
 Also optionally, Heroku can be configured to connect to GitHub to allow manual and automatic deployments based on the commits. Heroku deployment pipeline does not support build checks or other actions on the [free tier](https://www.heroku.com/pricing).
 
@@ -122,11 +124,11 @@ Local install is based on the following installations:
   - OR `pip install fastapi; pip install "uvicorn[standard]"`
 
 
-## Additional details
+# Additional details
 Relevant details for further development, debugging and interaction with the application.
 
 
-### Always on application
+## Always on application
 Heroku application goes to sleep after 30 minutes of inactivity. For example, Kaffeine application can be used to pings the app so that it stays active:  
 http://kaffeine.herokuapp.com/
 
@@ -134,7 +136,7 @@ Deactivation link to Kaffeine:
 http://kaffeine.herokuapp.com/#decaf
 
 
-### Heroku debug commands
+## Heroku debug commands
 Useful command for Heroku debugging:
 ```
 heroku open                     # Open the default app in browser
