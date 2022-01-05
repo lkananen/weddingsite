@@ -41,6 +41,8 @@ Build status:
 Direct link to the site:   
 [link](https://laurijatiia.herokuapp.com/)
 
+FastAPI automatically creates documentation for the web application. It is accessible as a [docs](https://laurijatiia.herokuapp.com/docs) website in [Swagger](https://swagger.io/) format.
+
 
 ## Architecture
 Deployment pipeline architecture:
