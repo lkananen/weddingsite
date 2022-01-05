@@ -3,7 +3,7 @@
 Docker containered FastAPI server running on Heroku.
 
 Build status:   
-[![CI](https://github.com/lkananen/fastapi_demosite/actions/workflows/github-actions.yml/badge.svg)](https://github.com/lkananen/fastapi_demosite/actions/workflows/github-actions.yml)
+[![CI](https://github.com/lkananen/weddingsite/actions/workflows/github-actions.yml/badge.svg)](https://github.com/lkananen/weddingsite/actions/workflows/github-actions.yml)
 
 
 ## Table of Contents
@@ -33,7 +33,7 @@ Direct link to the site:
 Running following commands sets up local server.
 
 ```
-git clone https://github.com/lkananen/fastapi_demosite.git
+git clone https://github.com/lkananen/weddingsite.git
 
 pip install -r source/requirements.txt
 
@@ -49,7 +49,7 @@ Heroku application creation is required on the first time.
 Following commands create _example-app-name_ Heroku application. After creation GitHub Actions can be attached to the application in the Heroku portal for [automated deployments](https://devcenter.heroku.com/articles/github-integration).
 
 ```
-git clone https://github.com/lkananen/fastapi_demosite.git
+git clone https://github.com/lkananen/weddingsite.git
 
 # Heroku setup
 heroku login
