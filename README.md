@@ -9,7 +9,9 @@ Build status:
 ## Table of Contents
 - [Wedding site](#wedding-site)
   - [Table of Contents](#table-of-contents)
+  - [Directory structure](#directory-structure)
   - [Example website](#example-website)
+  - [Architecture](#architecture)
   - [Setup](#setup)
     - [Local deployment](#local-deployment)
     - [First time deployment](#first-time-deployment)
@@ -21,9 +23,30 @@ Build status:
     - [Heroku debug commands](#heroku-debug-commands)
 
 
+## Directory structure
+
+- `/.github/workflows` Deployment pipeline used by GitHub Actions.
+- `/docs` Documentation files.
+- `/source` Source files and environment configurations for the web server.
+  - `/source/app` Web server application. FastAPI docs and URIs.
+  - `/source/docker-compose.yml` Wer server Docker container compose definition.
+  - `/source/Dockerfile` Web server Docker container definition.
+  - `/source/entry.sh` Web server startup script run in the Docker container.
+  - `/source/requirements.txt` Web server required packages.
+- `Procfile` Heroku process type declaration for the web server startup.
+- `heroku.yml` Heroku process type declaration for the web server startup.
+
+
+
 ## Example website
 Direct link to the site:   
 [link](https://laurijatiia.herokuapp.com/)
+
+
+## Architecture
+Deployment pipeline architecture:
+![Deployment pipeline](/docs/FastAPI_Heroku.png)
+Commits trigger GitHub actions to push changes to Heroku. Changes to Heroku trigger a Docker Compose build that creates a new version of the containerized FastAPI.
 
 
 ## Setup
@@ -74,9 +97,6 @@ heroku ps:scale web=1           # sets dynos
 ### Automatic deployment
 Based on [GitHub Actions](./.github/workflows/github-actions.yml) and [Heroku deployment configuration](heroku.yml) files. Commit triggers dependency check and deployment to Heroku. See secrets on the required setup on Heroku secrets.   
 Also optionally, Heroku can be configured to connect to GitHub to allow manual and automatic deployments based on the commits. Heroku deployment pipeline does not support build checks or other actions on the [free tier](https://www.heroku.com/pricing).
-
-![Deployment pipeline](/source/docs/FastAPI_Heroku.png)
-Deployment pipeline architecture.
 
 
 #### Secrets
