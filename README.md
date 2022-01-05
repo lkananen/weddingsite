@@ -5,11 +5,29 @@ Docker containered FastAPI server running on Heroku.
 Build status:   
 [![CI](https://github.com/lkananen/fastapi_demosite/actions/workflows/github-actions.yml/badge.svg)](https://github.com/lkananen/fastapi_demosite/actions/workflows/github-actions.yml)
 
+
+## Table of Contents
+- [FastAPI demo](#fastapi-demo)
+  - [Table of Contents](#table-of-contents)
+  - [Example website](#example-website)
+  - [Setup](#setup)
+    - [Local deployment](#local-deployment)
+    - [First time deployment](#first-time-deployment)
+    - [Automatic deployment](#automatic-deployment)
+    - [Secrets](#secrets)
+  - [Dependencies](#dependencies)
+  - [Additional details](#additional-details)
+    - [Always on application](#always-on-application)
+    - [Heroku debug commands](#heroku-debug-commands)
+
+
+## Example website
 Direct link to the site:   
 [link](https://laurijatiia.herokuapp.com/)
 
 
 ## Setup
+
 
 ### Local deployment
 Running following commands sets up local server.
@@ -23,6 +41,7 @@ pip install -r source/requirements.txt
 heroku local -f Procfile            # Starts the server
 heroku open
 ```
+
 
 ### First time deployment
 Heroku application creation is required on the first time.    
@@ -47,6 +66,7 @@ git push heroku main
 heroku ps:scale web=1           # sets dynos
 ```
 
+
 ### Automatic deployment
 Based on [GitHub Actions](./.github/workflows/github-actions.yml) and [Heroku deployment configuration](heroku.yml) files. Commit triggers dependency check and deployment to Heroku. See secrets on the required setup on Heroku secrets.   
 Also optionally, Heroku can be configured to connect to GitHub to allow manual and automatic deployments based on the commits. Heroku deployment pipeline does not support build checks or other actions on the [free tier](https://www.heroku.com/pricing).
@@ -54,8 +74,8 @@ Also optionally, Heroku can be configured to connect to GitHub to allow manual a
 ![Deployment pipeline](/source/docs/FastAPI_Heroku.png)
 Deployment pipeline architecture.
 
-### Secrets
 
+### Secrets
 **Note!** *Required by GitHub Actions.*   
 
 GitHub Action uses secrets to push changes to Heroku. Following secrets are required to be added to repository's secrets in the repository settings:
@@ -67,6 +87,7 @@ GitHub Action uses secrets to push changes to Heroku. Following secrets are requ
    - Must be unique.
 3. HEROKU_EMAIL
    - Email that you use with Heroku.
+
 
 ## Dependencies
 Local install is based on the following installations:
