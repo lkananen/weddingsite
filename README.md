@@ -1,4 +1,4 @@
-# FastAPI demo
+# Wedding site
 
 Docker containered FastAPI server running on Heroku.
 
@@ -7,14 +7,14 @@ Build status:
 
 
 ## Table of Contents
-- [FastAPI demo](#fastapi-demo)
+- [Wedding site](#wedding-site)
   - [Table of Contents](#table-of-contents)
   - [Example website](#example-website)
   - [Setup](#setup)
     - [Local deployment](#local-deployment)
     - [First time deployment](#first-time-deployment)
     - [Automatic deployment](#automatic-deployment)
-    - [Secrets](#secrets)
+      - [Secrets](#secrets)
   - [Dependencies](#dependencies)
   - [Additional details](#additional-details)
     - [Always on application](#always-on-application)
@@ -27,6 +27,10 @@ Direct link to the site:
 
 
 ## Setup
+Following instructions setup the demo and there are multiple ways to do it.
+1. [Local deployment](#local-deployment): relies on [Python environment](source/requirements.txt) and a [Procfile](/Procfile), sets up everything from this repository as [a local web server](source/app/main.py).
+2. [Manual Heroku deployment](#first-time-deployment): First time setup requires a Heroku application creation. The webserver stack can be defined in two ways: As a Python application through the [Procfile](/Procfile) or as an containerized application through [Docker Compose definition](source/docker-compose.yml). The compose application requires a stack configuration change [described below in the commands](#first-time-deployment).
+3. [Automatic Heroku deployment](#automatic-deployment): Requires first manual setup first time and setting up the required [secrets](#secrets). Configures an automatic deployment pipeline that runs Git commits through GitHub repository's GitHub Actions. The pipeline workflow pushes the changes to Heroku application repository and initiates a reload of the web server application. The application is built using a [Docker Compose definition](source/docker-compose.yml) running a [FastAPI application in a](source/app/main.py) [Docker container](source/Dockerfile).
 
 
 ### Local deployment
@@ -75,8 +79,8 @@ Also optionally, Heroku can be configured to connect to GitHub to allow manual a
 Deployment pipeline architecture.
 
 
-### Secrets
-**Note!** *Required by GitHub Actions.*   
+#### Secrets
+[**Note!** *Required by GitHub Actions.*](#automatic-deployment)   
 
 GitHub Action uses secrets to push changes to Heroku. Following secrets are required to be added to repository's secrets in the repository settings:
 1. HEROKU_API_KEY
