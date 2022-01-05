@@ -1,9 +1,9 @@
-# weddingsite
+# FastAPI demo
 
 Docker containered FastAPI server running on Heroku.
 
 Build status:   
-[![CI](https://github.com/lkananen/weddingsite/actions/workflows/github-actions.yml/badge.svg?branch=main)](https://github.com/lkananen/weddingsite/actions/workflows/github-actions.yml)
+[![CI](https://github.com/lkananen/fastapi_demosite/actions/workflows/github-actions.yml/badge.svg)](https://github.com/lkananen/fastapi_demosite/actions/workflows/github-actions.yml)
 
 Direct link to the site:   
 [link](https://laurijatiia.herokuapp.com/)
@@ -12,24 +12,25 @@ Direct link to the site:
 ## Setup
 
 ### Local deployment
-Running following commands sets up local server.  
-_**DEPRICATED**_: [Procfile](https://github.com/lkananen/weddingsite/blob/4d97fccaaa61857f787953b9688a0a4111512ed0/Procfile) removed.
+Running following commands sets up local server.
 
 ```
-git clone https://github.com/lkananen/weddingsite.git
+git clone https://github.com/lkananen/fastapi_demosite.git
 
 pip install -r source/requirements.txt
 
-heroku login
+#heroku login                       # Not completely neccessary
 heroku local -f Procfile            # Starts the server
 heroku open
 ```
 
 ### First time deployment
-Heroku application creation required on the first time. Following commands create _example-app-name_ Heroku application. After creation GitHub Actions can be attached to the application in the Heroku portal for [automated deployments](https://devcenter.heroku.com/articles/github-integration).
+Heroku application creation is required on the first time.    
+
+Following commands create _example-app-name_ Heroku application. After creation GitHub Actions can be attached to the application in the Heroku portal for [automated deployments](https://devcenter.heroku.com/articles/github-integration).
 
 ```
-git clone https://github.com/lkananen/weddingsite.git
+git clone https://github.com/lkananen/fastapi_demosite.git
 
 # Heroku setup
 heroku login
