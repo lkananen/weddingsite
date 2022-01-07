@@ -34,7 +34,10 @@ app = FastAPI(
 
 @app.get("/", tags=["root"])
 async def root():
-    return {"message": "Hello!"}
+    return {
+        "message": "Hello!",
+        "link": "https://www.youtube.com/watch?v=eu2OYcgr4rM"
+    }
 
 
 @app.get("/health", status_code=status.HTTP_200_OK, tags=["health"])
