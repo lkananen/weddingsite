@@ -1,6 +1,9 @@
 <html>
 <head>
     <title>Tables</title>
+    <!--
+        <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+    -->
     <style>
         // Bootstrapping CSS
         //
@@ -93,7 +96,9 @@
                 {% for side in sides %}
                 <tr>
                     {% for place in places %}
-                    <th>{{ table }} {{ side }} {{ place }}</th>
+                    {# Concatenates values together to form the id string #}
+                    {% set id_code = table ~ '-' ~ side ~ '-' ~ place %}
+                    <th>{{ full_data[id_code] }}</th>
                     {% endfor %}
                 </tr>
                 {% endfor %}

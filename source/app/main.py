@@ -43,6 +43,15 @@ app = FastAPI(
     openapi_url="/openapi.json"
 )
 
+# TODO: Add SSL
+# Removed as Heroku tries to obtain CSS via HTTP resulting in insecure connection 
+# # static
+# app.mount(
+#     "/static",
+#     StaticFiles(directory="app/static"),
+#     name="static"
+# )
+
 # templates
 templates = Jinja2Templates(directory="app/templates")
 
