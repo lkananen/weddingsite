@@ -66,7 +66,7 @@ templates = Jinja2Templates(directory="app/templates")
 
 
 # Main page
-@app.get("/", tags=["root"])
+@app.get("/", tags=["wedding"])
 async def root(request: Request):
     return templates.TemplateResponse("index.html", {
         "request": request,
@@ -92,15 +92,15 @@ async def root(request: Request):
     )
 
 # Wedding program
-@app.post("/program")
-async def get_program(request: Request):
-    return templates.TemplateResponse("program.html", {"request": request})
-# def get_program(data: str):
-#     img = Image.open("/static/wedding.jpg")
-#     img_buffer = io.BytesIO()
-#     img.save(img_buffer, "JPEG")
-#     img_buffer.seek(0)
-#     return StreamingResponse(img_buffer, media_type="image/jpeg")
+@app.get("/program", tags=["wedding"])
+async def get_program(data: str):
+    img = Image.open("/static/wedding.jpg")
+    img_buffer = io.BytesIO()
+    img.save(img_buffer, "JPEG")
+    img_buffer.seek(0)
+    return StreamingResponse(img_buffer, media_type="image/jpeg")
+#async def get_program(request: Request):
+#    return templates.TemplateResponse("program.html", {"request": request})
 
 
 # Health check
@@ -110,7 +110,7 @@ async def health_check():
 
 
 # Fetches seat map JSON from configuration files loaded to the environment
-@app.get("/seats", status_code=status.HTTP_200_OK, tags=["seatmap"])
+@app.get("/seats", status_code=status.HTTP_200_OK, tags=["seatmap", "wedding"])
 async def get_seats():
     return {
         "data": ast.literal_eval(
@@ -120,7 +120,7 @@ async def get_seats():
 
 
 # Visualizes the seats
-@app.get("/seatmap", response_class=HTMLResponse, tags=["seatmap"])
+@app.get("/seatmap", response_class=HTMLResponse, tags=["seatmap", "wedding"])
 async def read_seatmap(request: Request):
     full_data = ast.literal_eval(
         os.environ.get("SEATS", [])
@@ -151,7 +151,7 @@ async def read_seatmap(request: Request):
 
 
 # qr code generation
-@app.get("/qr", tags=["seatmap"])
+@app.get("/qr", tags=["wedding"])
 async def generate_qr():
     msg = os.environ.get("QR_MSG", "")
     img = qrcode.make(msg)
