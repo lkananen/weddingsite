@@ -2,12 +2,12 @@ import imp
 from fastapi import FastAPI, status, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-#from fastapi.staticfiles import StaticFiles
+from fastapi.staticfiles import StaticFiles
 import os
 import io
 import ast
 #import PIL
-#from PIL import Image
+from PIL import Image
 import qrcode
 from starlette.responses import StreamingResponse
 
@@ -54,12 +54,12 @@ app = FastAPI(
 
 # TODO: Add SSL
 # Removed as Heroku tries to obtain CSS via HTTP resulting in insecure connection 
-# # static
-# app.mount(
-#     "/static",
-#     StaticFiles(directory="app/static"),
-#     name="static"
-# )
+# static
+app.mount(
+    "/static",
+    StaticFiles(directory="app/static"),
+    name="static"
+)
 
 # templates
 templates = Jinja2Templates(directory="app/templates")
@@ -84,14 +84,24 @@ async def root(request: Request):
                 "link": os.environ.get("SITE_PROGRAM", ""),
             },
             {
-                "name": "QR-linkki",
+                "name": "QR-koodi",
                 "link": os.environ.get("SITE_QR", ""),
             }
         ]
         }
     )
 
+# Wedding program
+@app.post("/program")
+def generate(data: str):
+    img = Image.open("/app/static/wedding.jpg")
+    img_buffer = io.BytesIO()
+    img.save(img_buffer, "JPEG")
+    img_buffer.seek(0)
+    return StreamingResponse(img_buffer, media_type="image/jpeg")
 
+
+# Health check
 @app.get("/health", status_code=status.HTTP_200_OK, tags=["health"])
 async def health_check():
     return {"healtcheck": "ok"}
