@@ -94,7 +94,9 @@
                     {# Concatenates values together to form the id string #}
                     {% set id_code = table ~ '-' ~ side ~ '-' ~ place %}
                     {% for obj in data %}
-                    <th>{% obj.name if id_code == obj.id %}</th>
+                    {% if table ~ '-' ~ side ~ '-' ~ place == obj.id %}
+                    <th>{{ obj.name }}</th>
+                    {% endif %}
                     {% endfor %}    {# for objs #}
                     {% endfor %}    {# places #}
                 </tr>
