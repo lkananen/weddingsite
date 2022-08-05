@@ -5,6 +5,7 @@ from fastapi.templating import Jinja2Templates
 #from fastapi.staticfiles import StaticFiles
 import os
 import ast
+from starlette.responses import StreamingResponse
 
 # Loads configuration variables
 # They can be set using following commands:
@@ -108,3 +109,14 @@ async def read_seatmap(request: Request):
         "places": list(places),
         "places_minus_one": list(places_minus_one)
     })
+
+
+# qr code generation
+@app.get("/qr")
+def generate_qr():
+    msg = os.environ.get("QR_MSG", "")
+    img = qrcode.make(msg)
+    buf = io.BytesIO()
+    img.save(buf)
+    buf.seek(0)     # important here!
+    return StreamingResponse(buf, media_type="image/jpeg")
