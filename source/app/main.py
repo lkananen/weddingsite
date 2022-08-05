@@ -99,9 +99,7 @@ async def get_program():
     img.save(img_buffer, "JPEG")
     img_buffer.seek(0)
     return StreamingResponse(img_buffer, media_type="image/jpeg")
-#async def get_program(request: Request):
-#    return templates.TemplateResponse("program.html", {"request": request})
-
+    
 
 # Health check
 @app.get("/health", status_code=status.HTTP_200_OK, tags=["health"])
