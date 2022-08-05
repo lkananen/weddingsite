@@ -1,6 +1,6 @@
 import imp
-from fastapi import FastAPI, status
-import json
+from fastapi import FastAPI, status, Request
+from fastapi.templating import Jinja2Templates
 import os
 import ast
 
@@ -41,7 +41,10 @@ app = FastAPI(
     openapi_url="/openapi.json"
 )
 
+templates = Jinja2Templates(directory="templates")
 
+
+# Main page
 @app.get("/", tags=["root"])
 async def root():
     return {
@@ -55,11 +58,22 @@ async def health_check():
     return {"healtcheck": "ok"}
 
 
-# Fetches seat map from configuration files loaded to the environment
-@app.get("/seats", status_code=status.HTTP_200_OK, tags=["seatmap"])
+# Fetches seat map JSON from configuration files loaded to the environment
+@app.get("/seats", status_code=status.HTTP_200_OK, tags=["seat", "json", "seatmap"])
 async def get_seats():
     return {
         "data": ast.literal_eval(
             os.environ.get("SEATS", [])
         )
     }
+
+
+# Visualizes the seats
+@app.get("/seatmap", status_code=status.HTTP_200_OK, tags=["map", "seatmap"])
+async def read_seatmap(request: Request):
+    return templates.TemplateResponse("seatmap.html", {
+        "request": request,
+        "data": ast.literal_eval(
+            os.environ.get("SEATS", [])
+        )
+    })
