@@ -43,13 +43,6 @@ app = FastAPI(
     openapi_url="/openapi.json"
 )
 
-# static
-app.mount(
-    "/static",
-    StaticFiles(directory="app/static"),
-    name="static"
-)
-
 # templates
 templates = Jinja2Templates(directory="app/templates")
 
@@ -81,9 +74,23 @@ async def get_seats():
 # Visualizes the seats
 @app.get("/seatmap", response_class=HTMLResponse, tags=["map", "seatmap"])
 async def read_seatmap(request: Request):
+    full_data = ast.literal_eval(
+        os.environ.get("SEATS", [])
+    )
+    
+    # Unique values
+    ids = {i["id"] for i in full_data}
+    tables = {i["table"] for i in full_data}
+    sides = {i["side"] for i in full_data}
+    places = {i["place"] for i in full_data}
+
     return templates.TemplateResponse("seatmap.html", {
         "request": request,
         "data": ast.literal_eval(
             os.environ.get("SEATS", [])
-        )
+        ),
+        "ids": list(ids),
+        "tables": list(tables),
+        "sides": list(sides),
+        "places": list(places)
     })
