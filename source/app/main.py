@@ -1,5 +1,6 @@
 import imp
 from fastapi import FastAPI, status, Request
+from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 import os
 import ast
@@ -69,7 +70,7 @@ async def get_seats():
 
 
 # Visualizes the seats
-@app.get("/seatmap", status_code=status.HTTP_200_OK, tags=["map", "seatmap"])
+@app.get("/seatmap", response_class=HTMLResponse, tags=["map", "seatmap"])
 async def read_seatmap(request: Request):
     return templates.TemplateResponse("seatmap.html", {
         "request": request,
