@@ -131,11 +131,26 @@
     </div>
 
     <div class="container">
+        {% for table in tables %}
         <table>
             <thead>
-
+                <tr>
+                    <th>Table {{table}}</th>
+                    {% for i in range(len(places) - 1) %}
+                    <th> </th>
+                    {% endfor %}
+                </tr>
             </thead>
+            <tbody>
+                <tr>
+                    {% for i in range(len(places) - 1) %}
+                    <th>X</th>
+                    {% endfor %}
+                </tr>
+            </tbody>
         </table>
+        {% endfor %}
+        <br>
     </div>
 </body>
 </html>
