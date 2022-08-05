@@ -57,8 +57,10 @@ async def health_check():
 # Fetches seat map from configuration files loaded to the environment
 @app.get("/seats", status_code=status.HTTP_200_OK, tags=["seatmap"])
 async def get_seats():
-    return {
-        "data": json.loads(json.dumps(
-            os.environ.get("SEATS", [])
-        ))
-    }
+    return json.loads(
+        {
+            "data": json.dumps(
+                os.environ.get("SEATS", [])
+            )
+        }
+    )
