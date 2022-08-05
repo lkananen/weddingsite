@@ -2,7 +2,7 @@ import imp
 from fastapi import FastAPI, status, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from fastapi.staticfiles import StaticFiles
+#from fastapi.staticfiles import StaticFiles
 import os
 import ast
 
@@ -93,6 +93,9 @@ async def read_seatmap(request: Request):
     sides = {i["side"] for i in full_data}
     places = {i["place"] for i in full_data}
     places_minus_one = {i for i in range(len(places) - 1)}
+
+    # TODO: after including static files replace styles with this
+    # <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
 
     return templates.TemplateResponse("seatmap.html", {
         "request": request,
