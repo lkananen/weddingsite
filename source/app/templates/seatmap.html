@@ -79,8 +79,6 @@
     </style>
 </head>
 <body>
-    <h1>Seats</h1>
-
     <div class="container">
         {% for table in tables %}
         <table>
@@ -98,7 +96,7 @@
                     {% for place in places %}
                     {# Concatenates values together to form the id string #}
                     {% set id_code = table ~ '-' ~ side ~ '-' ~ place %}
-                    <th>{{ full_data[id_code] }}</th>
+                    <th>{{ full_data[id_code].name }}</th>
                     {% endfor %}
                 </tr>
                 {% endfor %}
