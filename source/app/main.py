@@ -94,7 +94,7 @@ async def root(request: Request):
 # Wedding program
 @app.post("/program")
 def generate(data: str):
-    img = Image.open("/app/static/wedding.jpg")
+    img = Image.open("/static/wedding.jpg")
     img_buffer = io.BytesIO()
     img.save(img_buffer, "JPEG")
     img_buffer.seek(0)
