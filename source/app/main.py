@@ -58,7 +58,7 @@ async def health_check():
 @app.get("/seats", status_code=status.HTTP_200_OK, tags=["seatmap"])
 async def get_seats():
     return {
-        "data": json.dumps(
+        "data": json.loads(json.dumps(
             os.environ.get("SEATS", [])
-        )
+        ))
     }
