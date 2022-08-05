@@ -3,3 +3,4 @@ heroku==0.1.4
 Jinja2==3.1.2
 uvicorn[standard]==0.18.2
 starlette==0.19.1
+qrcode==7.3.1

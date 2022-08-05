@@ -5,6 +5,7 @@ from fastapi.templating import Jinja2Templates
 #from fastapi.staticfiles import StaticFiles
 import os
 import ast
+import qrcode
 from starlette.responses import StreamingResponse
 
 # Loads configuration variables
