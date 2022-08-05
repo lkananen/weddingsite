@@ -55,7 +55,7 @@ Following instructions setup the demo and there are multiple ways to do it.
 1. [Local deployment](#local-deployment): relies on [Python environment](source/requirements.txt) and a [Procfile](/Procfile), sets up everything from this repository as [a local web server](source/app/main.py).
 2. [Manual Heroku deployment](#first-time-deployment): First time setup requires a Heroku application creation. The webserver stack can be defined in two ways: As a Python application through the [Procfile](/Procfile) or as an containerized application through [Docker Compose definition](source/docker-compose.yml). The compose application requires a stack configuration change [described below in the commands](#first-time-deployment).
 3. [Automatic Heroku deployment](#automatic-deployment): Requires first manual setup first time and setting up the required [secrets](#secrets). Configures an automatic deployment pipeline that runs Git commits through GitHub repository's GitHub Actions. The pipeline workflow pushes the changes to Heroku application repository and initiates a reload of the web server application. The application is built using a [Docker Compose definition](source/docker-compose.yml) running a [FastAPI application in a](source/app/main.py) [Docker container](source/Dockerfile).
-
+4. Add manually the enviromnent variables from file [.env](source/app/.env-example) as Heroku app configuration variables.
 
 ### Local deployment
 Running following commands sets up local server.

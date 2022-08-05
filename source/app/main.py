@@ -1,4 +1,5 @@
 from fastapi import FastAPI, status
+import json
 
 description = """
 ## Description
@@ -43,3 +44,9 @@ async def root():
 @app.get("/health", status_code=status.HTTP_200_OK, tags=["health"])
 async def health_check():
     return {"healtcheck": "ok"}
+
+
+# Fetches seat map from configuration files loaded to the environment
+@app.get("/seats", status_code=status.HTTP_200_OK, tags=["seatmap"])
+async def get_seats():
+    return json.load(ENV["SEATS"])
