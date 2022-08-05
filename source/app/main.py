@@ -1,5 +1,13 @@
+import imp
 from fastapi import FastAPI, status
 import json
+import os
+
+# Loads configuration variables
+# They can be set using following commands:
+#heroku config:set IS_HEROKU=True 
+# And loaded like this:
+#is_prod = os.environ.get('IS_HEROKU', None)
 
 description = """
 ## Description
@@ -49,4 +57,4 @@ async def health_check():
 # Fetches seat map from configuration files loaded to the environment
 @app.get("/seats", status_code=status.HTTP_200_OK, tags=["seatmap"])
 async def get_seats():
-    return json.load(ENV["SEATS"])
+    return json.load(os.environ.get("SEATS", {}))
