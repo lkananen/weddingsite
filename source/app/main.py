@@ -71,19 +71,19 @@ async def root():
     return templates.TemplateResponse("index.html", {
         "pages": [
             {
-                "name": "main_site",
+                "name": "Pääsivu",
                 "link": os.environ.get("SITE_MAIN", ""),
             },
             {
-                "name": "seat_site",
+                "name": "Pöytäkartta",
                 "link": os.environ.get("SITE_SEATS", ""),
             },
             {
-                "name": "program_site",
+                "name": "Ohjelma",
                 "link": os.environ.get("SITE_PROGRAM", ""),
             },
             {
-                "name": "qr_site",
+                "name": "QR-linkki",
                 "link": os.environ.get("SITE_QR", ""),
             }
         ]
