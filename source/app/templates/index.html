@@ -1,109 +1,11 @@
 <html>
 <head>
-    <title>Tables</title>
-    <style>
-        // Bootstrapping CSS
-        //
-        // Sources:
-        // - https://uicookies.com/bootstrap-datatable/
-        // - https://codepen.io/alexerlandsson/pen/mPWgpO
-
-        html,
-        body {
-            height: 100%;
-        }
-
-        body {
-            margin: 0;
-            background: linear-gradient(45deg, #49a09d, #5f2c82);
-            font-family: sans-serif;
-            font-weight: 100;
-        }
-
-        .container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        table {
-            width: 800px;
-            border-collapse: collapse;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-
-        th,
-        td {
-            padding: 15px;
-            background-color: rgba(255,255,255,0.2);
-            color: #fff;
-        }
-
-        th {
-            text-align: left;
-        }
-
-        thead {
-            th {
-                background-color: #55608f;
-            }
-        }
-
-        tbody {
-            tr {
-                &:hover {
-                    background-color: rgba(255,255,255,0.3);
-                }
-            }
-            td {
-                position: relative;
-                &:hover {
-                    &:before {
-                        content: "";
-                        position: absolute;
-                        left: 0;
-                        right: 0;
-                        top: -9999px;
-                        bottom: -9999px;
-                        background-color: rgba(255,255,255,0.2);
-                        z-index: -1;
-                    }
-                }
-            }
-        }
-    </style>
+    <title>Map</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
-        {% for table in tables %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Pöytä {{table}}</th>
-                    {% for i in places_minus_one %}
-                    <th> </th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for side in sides %}
-                <tr>
-                    {% for place in places %}
-                    {# Concatenates values together to form the id string #}
-                    {% for obj in data %}
-                    {% if table ~ '-' ~ side ~ '-' ~ place == obj.id %}
-                    <th>{{ obj.name }}</th>
-                    {% endif %}
-                    {% endfor %}    {# for objs #}
-                    {% endfor %}    {# places #}
-                </tr>
-                {% endfor %}    {# sides #}
-            </tbody>
-        </table>
-        <br>
-        {% endfor %}    {# tables #}
-    </div>
+    {% for page in pages %}
+    <p>{{page.link}}</p>
+    {% endfor %}
 </body>
 </html>
