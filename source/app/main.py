@@ -93,7 +93,7 @@ async def root(request: Request):
 
 # Wedding program
 @app.get("/program", tags=["wedding"])
-async def get_program(data: str):
+async def get_program():
     img = Image.open("/static/wedding.jpg")
     img_buffer = io.BytesIO()
     img.save(img_buffer, "JPEG")
