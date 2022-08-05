@@ -68,10 +68,27 @@ templates = Jinja2Templates(directory="app/templates")
 # Main page
 @app.get("/", tags=["root"])
 async def root():
-    return {
-        "message": "Hello!",
-        "link": "https://www.youtube.com/watch?v=eu2OYcgr4rM"
-    }
+    return templates.TemplateResponse("index.html", {
+        "pages": [
+            {
+                "name": "main_site",
+                "link": os.environ.get("SITE_MAIN", ""),
+            },
+            {
+                "name": "seat_site",
+                "link": os.environ.get("SITE_SEATS", ""),
+            },
+            {
+                "name": "program_site",
+                "link": os.environ.get("SITE_PROGRAM", ""),
+            },
+            {
+                "name": "qr_site",
+                "link": os.environ.get("SITE_QR", ""),
+            }
+        ]
+        }
+    )
 
 
 @app.get("/health", status_code=status.HTTP_200_OK, tags=["health"])
@@ -107,7 +124,6 @@ async def read_seatmap(request: Request):
     # <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
 
     return templates.TemplateResponse("seatmap.html", {
-        "request": request,
         "data": ast.literal_eval(
             os.environ.get("SEATS", [])
         ),
@@ -116,7 +132,8 @@ async def read_seatmap(request: Request):
         "sides": list(sides),
         "places": list(places),
         "places_minus_one": list(places_minus_one)
-    })
+        }
+    )
 
 
 # qr code generation
