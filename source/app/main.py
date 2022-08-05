@@ -69,6 +69,7 @@ templates = Jinja2Templates(directory="app/templates")
 @app.get("/", tags=["root"])
 async def root(request: Request):
     return templates.TemplateResponse("index.html", {
+        "request": request,
         "pages": [
             {
                 "name": "Pääsivu",
@@ -124,6 +125,7 @@ async def read_seatmap(request: Request):
     # <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
 
     return templates.TemplateResponse("seatmap.html", {
+        "request": request,
         "data": ast.literal_eval(
             os.environ.get("SEATS", [])
         ),
