@@ -2,6 +2,7 @@ import imp
 from fastapi import FastAPI, status
 import json
 import os
+import ast
 
 # Loads configuration variables
 # They can be set using following commands:
@@ -57,10 +58,8 @@ async def health_check():
 # Fetches seat map from configuration files loaded to the environment
 @app.get("/seats", status_code=status.HTTP_200_OK, tags=["seatmap"])
 async def get_seats():
-    return json.loads(
-        {
-            "data": json.dumps(
-                os.environ.get("SEATS", [])
-            )
-        }
-    )
+    return {
+        "data": ast.literal_eval(
+            os.environ.get("SEATS", [])
+        )
+    }
