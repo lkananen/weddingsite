@@ -67,7 +67,7 @@ templates = Jinja2Templates(directory="app/templates")
 
 # Main page
 @app.get("/", tags=["root"])
-async def root():
+async def root(request: Request):
     return templates.TemplateResponse("index.html", {
         "pages": [
             {
