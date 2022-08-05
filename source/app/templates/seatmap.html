@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Seats</title>
+    <title>Tables</title>
     <style>
         // Bootstrapping CSS
         //
@@ -76,59 +76,7 @@
     </style>
 </head>
 <body>
-    <h1>Map</h1>
-    <p>Items: {{ data }}</p>
-
-    <div class="container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Column 1</th>
-                    <th>Column 2</th>
-                    <th>Column 3</th>
-                    <th>Column 4</th>
-                    <th>Column 5</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Cell 1</td>
-                    <td>Cell 2</td>
-                    <td>Cell 3</td>
-                    <td>Cell 4</td>
-                    <td>Cell 5</td>
-                </tr>
-                <tr>
-                    <td>Cell 1</td>
-                    <td>Cell 2</td>
-                    <td>Cell 3</td>
-                    <td>Cell 4</td>
-                    <td>Cell 5</td>
-                </tr>
-                <tr>
-                    <td>Cell 1</td>
-                    <td>Cell 2</td>
-                    <td>Cell 3</td>
-                    <td>Cell 4</td>
-                    <td>Cell 5</td>
-                </tr>
-                <tr>
-                    <td>Cell 1</td>
-                    <td>Cell 2</td>
-                    <td>Cell 3</td>
-                    <td>Cell 4</td>
-                    <td>Cell 5</td>
-                </tr>
-                <tr>
-                    <td>Cell 1</td>
-                    <td>Cell 2</td>
-                    <td>Cell 3</td>
-                    <td>Cell 4</td>
-                    <td>Cell 5</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <h1>Seats</h1>
 
     <div class="container">
         {% for table in tables %}
@@ -145,14 +93,14 @@
                 {% for side in sides %}
                 <tr>
                     {% for place in places %}
-                    <th>X</th>
+                    <th>{{ table }} {{ side }} {{ place }}</th>
                     {% endfor %}
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        {% endfor %}
         <br>
+        {% endfor %}
     </div>
 </body>
 </html>
