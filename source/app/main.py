@@ -6,6 +6,8 @@ from fastapi.templating import Jinja2Templates
 import os
 import io
 import ast
+#import PIL
+#from PIL import Image
 import qrcode
 from starlette.responses import StreamingResponse
 
