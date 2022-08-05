@@ -8,12 +8,14 @@
         <img src="/static/wedding.jpg" class="rounded" alt="program" style="max-width: 500; width: 80%; padding-top: 25px; padding-bottom: 25px;">
     </div>
 
-    <ul class="nav justify-content-center">
+    <div style="background-color: rgb(243,242,240); border: 2px outset; text-align: center;">
+      <ul class="nav justify-content-center">
         {% for page in pages %}
         <li class="nav-item">
-          <a class="nav-link" href={{ page.link }}>{{ page.name }}</a>
+          <a class="nav-link" href={{ page.link }} style="color: black;">{{ page.name }}</a>
         </li>
         {% endfor %}
       </ul>
+    </div>
 </body>
 </html>
