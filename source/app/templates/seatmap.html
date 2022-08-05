@@ -93,14 +93,16 @@
                     {% for place in places %}
                     {# Concatenates values together to form the id string #}
                     {% set id_code = table ~ '-' ~ side ~ '-' ~ place %}
-                    <th>{{ full_data[id_code].name }}</th>
-                    {% endfor %}
+                    {% for obj in data %}
+                    <th>{% obj.name if id_code == obj.id %}</th>
+                    {% endfor %}    {# for objs #}
+                    {% endfor %}    {# places #}
                 </tr>
-                {% endfor %}
+                {% endfor %}    {# sides #}
             </tbody>
         </table>
         <br>
-        {% endfor %}
+        {% endfor %}    {# tables #}
     </div>
 </body>
 </html>
