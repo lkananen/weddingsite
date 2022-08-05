@@ -2,6 +2,7 @@ import imp
 from fastapi import FastAPI, status, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 import os
 import ast
 
@@ -42,6 +43,14 @@ app = FastAPI(
     openapi_url="/openapi.json"
 )
 
+# static
+app.mount(
+    "/static",
+    StaticFiles(directory="static"),
+    name="static"
+)
+
+# templates
 templates = Jinja2Templates(directory="app/templates")
 
 
