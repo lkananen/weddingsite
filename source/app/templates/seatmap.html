@@ -81,7 +81,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Table {{table}}</th>
+                    <th>Pöytä {{table}}</th>
                     {% for i in places_minus_one %}
                     <th> </th>
                     {% endfor %}
@@ -92,7 +92,6 @@
                 <tr>
                     {% for place in places %}
                     {# Concatenates values together to form the id string #}
-                    {% set id_code = table ~ '-' ~ side ~ '-' ~ place %}
                     {% for obj in data %}
                     {% if table ~ '-' ~ side ~ '-' ~ place == obj.id %}
                     <th>{{ obj.name }}</th>
