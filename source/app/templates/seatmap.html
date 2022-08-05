@@ -94,7 +94,7 @@
                     {# Concatenates values together to form the id string #}
                     {% for obj in data %}
                     {% if table ~ '-' ~ side ~ '-' ~ place == obj.id %}
-                    <th>{{ obj.name }}</th>
+                    <td>{{ obj.name }}</td>
                     {% endif %}
                     {% endfor %}    {# for objs #}
                     {% endfor %}    {# places #}
