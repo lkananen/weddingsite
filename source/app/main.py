@@ -19,7 +19,7 @@ from starlette.responses import StreamingResponse
 
 description = """
 ## Description
-TODO (_not implemented_)
+API documentation for the wedding site.
 
 ### Automatically generated paths
 - **/docs**: This documentation file.
@@ -35,6 +35,10 @@ tags_metadata = [
     {
         "name": "health",
         "description": "Web server health status."
+    },
+    {
+        "name": "seatmap",
+        "description": "Seat mappings."
     }
 ]
 
@@ -76,7 +80,7 @@ async def health_check():
 
 
 # Fetches seat map JSON from configuration files loaded to the environment
-@app.get("/seats", status_code=status.HTTP_200_OK, tags=["seat", "json", "seatmap"])
+@app.get("/seats", status_code=status.HTTP_200_OK, tags=["seatmap"])
 async def get_seats():
     return {
         "data": ast.literal_eval(
@@ -86,7 +90,7 @@ async def get_seats():
 
 
 # Visualizes the seats
-@app.get("/seatmap", response_class=HTMLResponse, tags=["map", "seatmap"])
+@app.get("/seatmap", response_class=HTMLResponse, tags=["seatmap"])
 async def read_seatmap(request: Request):
     full_data = ast.literal_eval(
         os.environ.get("SEATS", [])
@@ -116,7 +120,7 @@ async def read_seatmap(request: Request):
 
 
 # qr code generation
-@app.get("/qr")
+@app.get("/qr", tags=["seatmap"])
 def generate_qr():
     msg = os.environ.get("QR_MSG", "")
     img = qrcode.make(msg)
