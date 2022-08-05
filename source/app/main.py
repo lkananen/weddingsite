@@ -83,6 +83,7 @@ async def read_seatmap(request: Request):
     tables = {i["table"] for i in full_data}
     sides = {i["side"] for i in full_data}
     places = {i["place"] for i in full_data}
+    places_minus_one = {i for i in range(len(places) - 1)}
 
     return templates.TemplateResponse("seatmap.html", {
         "request": request,
@@ -92,5 +93,6 @@ async def read_seatmap(request: Request):
         "ids": list(ids),
         "tables": list(tables),
         "sides": list(sides),
-        "places": list(places)
+        "places": list(places),
+        "places_minus_one": list(places_minus_one)
     })

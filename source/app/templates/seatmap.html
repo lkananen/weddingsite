@@ -136,17 +136,19 @@
             <thead>
                 <tr>
                     <th>Table {{table}}</th>
-                    {% for i in range(len(places) - 1) %}
+                    {% for i in places_minus_one %}
                     <th> </th>
                     {% endfor %}
                 </tr>
             </thead>
             <tbody>
+                {% for side in sides %}
                 <tr>
-                    {% for i in range(len(places) - 1) %}
+                    {% for place in places %}
                     <th>X</th>
                     {% endfor %}
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
         {% endfor %}
