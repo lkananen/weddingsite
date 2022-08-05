@@ -42,7 +42,7 @@ app = FastAPI(
     openapi_url="/openapi.json"
 )
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="source/app/templates")
 
 
 # Main page
