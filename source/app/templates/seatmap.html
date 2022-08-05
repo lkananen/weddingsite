@@ -76,8 +76,8 @@
     </style>
 </head>
 <body>
+    {% for table in tables %}
     <div class="container">
-        {% for table in tables %}
         <table>
             <thead>
                 <tr>
@@ -103,7 +103,7 @@
             </tbody>
         </table>
         <br>
-        {% endfor %}    {# tables #}
     </div>
+    {% endfor %}    {# tables #}
 </body>
 </html>
