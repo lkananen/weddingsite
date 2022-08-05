@@ -93,12 +93,14 @@ async def root(request: Request):
 
 # Wedding program
 @app.post("/program")
-def generate(data: str):
-    img = Image.open("/static/wedding.jpg")
-    img_buffer = io.BytesIO()
-    img.save(img_buffer, "JPEG")
-    img_buffer.seek(0)
-    return StreamingResponse(img_buffer, media_type="image/jpeg")
+async def get_program(request: Request):
+    return templates.TemplateResponse("program.html", {"request": request})
+# def get_program(data: str):
+#     img = Image.open("/static/wedding.jpg")
+#     img_buffer = io.BytesIO()
+#     img.save(img_buffer, "JPEG")
+#     img_buffer.seek(0)
+#     return StreamingResponse(img_buffer, media_type="image/jpeg")
 
 
 # Health check
@@ -150,7 +152,7 @@ async def read_seatmap(request: Request):
 
 # qr code generation
 @app.get("/qr", tags=["seatmap"])
-def generate_qr():
+async def generate_qr():
     msg = os.environ.get("QR_MSG", "")
     img = qrcode.make(msg)
     buf = io.BytesIO()
